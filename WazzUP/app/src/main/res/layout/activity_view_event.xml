@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".AnnouncementActivities.ViewEventActivity">
+
+    <TextView
+        android:id="@+id/event_view_priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/event_view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:paddingBottom="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="Hello World!" />
+
+    <TextView
+        android:id="@+id/event_view_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="Engg week will happen tonight at BGC coliseum." />
+
+    <TextView
+        android:id="@+id/event_view_venue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="EEEI Building" />
+
+    <TextView
+        android:id="@+id/event_view_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="December 12, 2019" />
+
+    <TextView
+        android:id="@+id/event_view_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="8:00 PM" />
+
+</LinearLayout>
