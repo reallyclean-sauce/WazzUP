@@ -128,6 +128,10 @@ public class ExcelUpdate extends Activity
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
+
+
+        mOutputText.setText("");
+        getResultsFromApi();
     }
 
 
