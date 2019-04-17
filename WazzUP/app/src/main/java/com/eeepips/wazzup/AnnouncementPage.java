@@ -133,7 +133,7 @@ public class AnnouncementPage extends AppCompatActivity{
                 return;
             }
 
-            Toast.makeText(this, "Event Viewed!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Event Viewed!", Toast.LENGTH_SHORT).show();
         } else if (requestCode == REFRESH_EVENTS_REQUEST && resultCode == RESULT_OK) {
             ArrayList<String> resource = data.getStringArrayListExtra("output");
             String event_string;
@@ -181,7 +181,7 @@ public class AnnouncementPage extends AppCompatActivity{
             Toast.makeText(this, "Events has been updated.", Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(this, "Event Not Saved", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Event Not Saved", Toast.LENGTH_SHORT).show();
         }
 
     }
