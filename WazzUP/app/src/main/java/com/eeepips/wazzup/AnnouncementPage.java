@@ -84,21 +84,21 @@ public class AnnouncementPage extends AppCompatActivity{
         });
 
         // Allows the elements to be swipe-able
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                // Gets which element is being swiped
-                // And deletes it
-                eventViewModel.delete(adapter.getEventAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(AnnouncementPage.this, "Note deleted!", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(recyclerView);
+//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+//                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                // Gets which element is being swiped
+//                // And deletes it
+//                eventViewModel.delete(adapter.getEventAt(viewHolder.getAdapterPosition()));
+//                Toast.makeText(AnnouncementPage.this, "Note deleted!", Toast.LENGTH_SHORT).show();
+//            }
+//        }).attachToRecyclerView(recyclerView);
 
         // Called when any item is clicked
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {

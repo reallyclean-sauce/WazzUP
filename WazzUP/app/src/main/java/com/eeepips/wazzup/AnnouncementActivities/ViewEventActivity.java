@@ -34,7 +34,7 @@ public class ViewEventActivity extends AppCompatActivity {
     private TextView textViewVenue;
     private TextView textViewDate;
     private TextView textViewTime;
-    private TextView textViewPriority;
+//    private TextView textViewPriority;
 
     //    Not sure if finished
 //    But should be finished
@@ -49,7 +49,7 @@ public class ViewEventActivity extends AppCompatActivity {
         textViewVenue = findViewById(R.id.event_view_venue);
         textViewDate = findViewById(R.id.event_view_date);
         textViewTime = findViewById(R.id.event_view_time);
-        textViewPriority = findViewById(R.id.event_view_priority);
+//        textViewPriority = findViewById(R.id.event_view_priority);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
 
@@ -58,10 +58,10 @@ public class ViewEventActivity extends AppCompatActivity {
             setTitle("View Event");
             textViewTitle.setText(intent.getStringExtra(EXTRA_TITLE));
             textViewDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
-            textViewVenue.setText(intent.getStringExtra(EXTRA_VENUE));
-            textViewDate.setText(intent.getStringExtra(EXTRA_DATE));
-            textViewTime.setText(intent.getStringExtra(EXTRA_TIME));
-            textViewPriority.setText(intent.getStringExtra(EXTRA_PRIORITY));
+            textViewVenue.setText("Venue: " +intent.getStringExtra(EXTRA_VENUE));
+            textViewDate.setText("Date: " + intent.getStringExtra(EXTRA_DATE));
+            textViewTime.setText("Time: " + intent.getStringExtra(EXTRA_TIME));
+//            textViewPriority.setText(intent.getStringExtra(EXTRA_PRIORITY));
 
         } else {
             setTitle("Add Event");

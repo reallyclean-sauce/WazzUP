@@ -8,13 +8,13 @@
     android:padding="16dp"
     tools:context=".AnnouncementActivities.ViewEventActivity">
 
-    <TextView
-        android:id="@+id/event_view_priority"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="1" />
+    <!--<TextView-->
+        <!--android:id="@+id/event_view_priority"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="end"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+        <!--tools:text="1" />-->
 
     <TextView
         android:id="@+id/event_view_title"
