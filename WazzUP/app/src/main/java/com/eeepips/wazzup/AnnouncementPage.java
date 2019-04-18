@@ -34,7 +34,7 @@ public class AnnouncementPage extends AppCompatActivity{
     public static final int VIEW_EVENT_REQUEST = 2;
     public static final int REFRESH_EVENTS_REQUEST = 3;
 
-    private EventViewModel eventViewModel;
+    public EventViewModel eventViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
