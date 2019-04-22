@@ -84,8 +84,9 @@ public class MainActivity extends AppCompatActivity
             // Start AnnouncementPage
             Intent intent = new Intent(MainActivity.this, AnnouncementPage.class);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.nav_map) {
+            Intent intent = new Intent(MainActivity.this, MapView.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
