@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.eeepips.wazzup.AnnouncementActivities.VenueEventsActivity;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_events) {
             // Start AnnouncementPage
-            Intent intent = new Intent(MainActivity.this, AnnouncementPage.class);
+            Intent intent = new Intent(MainActivity.this, VenueEventsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_map) {
             Intent intent = new Intent(MainActivity.this, MapView.class);

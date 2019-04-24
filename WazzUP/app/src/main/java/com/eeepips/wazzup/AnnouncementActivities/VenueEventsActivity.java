@@ -1,45 +1,37 @@
-package com.eeepips.wazzup;
-
+package com.eeepips.wazzup.AnnouncementActivities;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.eeepips.wazzup.AnnouncementActivities.ExcelUpdate;
-import com.eeepips.wazzup.AnnouncementActivities.ViewEventActivity;
+import com.eeepips.wazzup.AnnouncementPage;
 import com.eeepips.wazzup.Database.Event;
 import com.eeepips.wazzup.Database.EventAdapter;
 import com.eeepips.wazzup.Database.EventViewModel;
+import com.eeepips.wazzup.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eeepips.wazzup.AnnouncementPage.eventViewModel;
 
-public class AnnouncementPage extends AppCompatActivity{
-    //    public static final int VIEW_EVENT_REQUEST = 1;
-    public static final int ADD_EVENT_REQUEST = 1;
+public class VenueEventsActivity extends AppCompatActivity {
     public static final int VIEW_EVENT_REQUEST = 2;
-    public static final int REFRESH_EVENTS_REQUEST = 3;
+    public static final String search_venue = "UP EEEI";
 
-    public static EventViewModel eventViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_announcement_page);
+        setContentView(R.layout.activity_venue_events);
 
 
         // For Refreshing all the events
@@ -54,19 +46,6 @@ public class AnnouncementPage extends AppCompatActivity{
 //            }
 //        });
 
-
-        // This adds the the floating action button
-        // Upon clicking, it goes to a new activity AddEventActivity
-        // which allows to add an event data to the database
-        FloatingActionButton buttonAddEvent = findViewById(R.id.button_refresh);
-        buttonAddEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AnnouncementPage.this, ExcelUpdate.class);
-                startActivityForResult(intent, REFRESH_EVENTS_REQUEST);
-            }
-        });
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -74,8 +53,8 @@ public class AnnouncementPage extends AppCompatActivity{
         final EventAdapter adapter = new EventAdapter();
         recyclerView.setAdapter(adapter);
 
-        eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+        AnnouncementPage.eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        AnnouncementPage.eventViewModel.getVenueEvents(search_venue).observe(this, new Observer<List<Event>>() {
             @Override
             public void onChanged(@Nullable List<Event> events) {
                 // Update Recycle Viewer
@@ -104,7 +83,7 @@ public class AnnouncementPage extends AppCompatActivity{
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event event) {
-                Intent intent = new Intent(AnnouncementPage.this, ViewEventActivity.class);
+                Intent intent = new Intent(VenueEventsActivity.this, ViewEventActivity.class);
                 intent.putExtra(ViewEventActivity.EXTRA_ID, event.getId());
                 intent.putExtra(ViewEventActivity.EXTRA_TITLE, event.getTitle());
                 intent.putExtra(ViewEventActivity.EXTRA_DESCRIPTION, event.getDescription());
@@ -134,90 +113,9 @@ public class AnnouncementPage extends AppCompatActivity{
             }
 
 //            Toast.makeText(this, "Event Viewed!", Toast.LENGTH_SHORT).show();
-        } else if (requestCode == REFRESH_EVENTS_REQUEST && resultCode == RESULT_OK) {
-            ArrayList<String> resource = data.getStringArrayListExtra("output");
-            String event_string;
-            String[] tokens;
-            String delims = "[,]+";
-
-
-            String title;
-            String description;
-            String venue;
-            String date;
-            String time;
-            int priority;
-
-            Event event;
-
-//            event_string = resource.get(0);
-//            tokens = event_string.split(delims);
-//            title = tokens[0];
-//            description = tokens[1];
-//            venue = tokens[2];
-//            date = tokens[3];
-//            time = tokens[4];
-//            priority = Integer.parseInt(tokens[5]);
-//
-//            event = new Event(title, description, venue, date, time, priority);
-//            eventViewModel.insert(event);
-            // Delete All events first before adding
-            eventViewModel.deleteAllEvents();
-
-            for (int i = 0; i < resource.size(); i++) {
-                event_string = resource.get(i);
-                tokens = event_string.split(delims);
-                title = tokens[0];
-                description = tokens[1];
-                venue = tokens[2];
-                date = tokens[3];
-                time = tokens[4];
-                priority = Integer.parseInt(tokens[5]);
-
-                event = new Event(title, description, venue, date, time, priority);
-                eventViewModel.insert(event);
-            }
-
-            Toast.makeText(this, "Events has been updated.", Toast.LENGTH_SHORT).show();
-
         } else {
 //            Toast.makeText(this, "Event Not Saved", Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
-    // Inflates the menu button
-    // then shows whats inside that menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    // Parses what happens on the Options selected
-    // One option deletes all Events
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_all_events:
-                eventViewModel.deleteAllEvents();
-                Toast.makeText(this, "All events deleted.", Toast.LENGTH_SHORT).show();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
-    // This is for saving the note
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == VIEW_EVENT_REQUEST) {
-//            String title =
-//        }
-//    }
 }

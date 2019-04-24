@@ -16,6 +16,7 @@ public class EventViewModel extends AndroidViewModel {
     private EventRepository repository;
     //    private LiveData<List<Event>> allEvents
     private LiveData<List<Event>> allEvents;
+    private LiveData<List<Event>> venueEvents;
 
 
     public EventViewModel(@NonNull Application application) {
@@ -42,5 +43,10 @@ public class EventViewModel extends AndroidViewModel {
 
     public LiveData<List<Event>> getAllEvents() {
         return allEvents;
+    }
+
+    public LiveData<List<Event>> getVenueEvents(String search_venue) {
+        venueEvents = repository.getVenueEvents(search_venue);
+        return venueEvents;
     }
 }

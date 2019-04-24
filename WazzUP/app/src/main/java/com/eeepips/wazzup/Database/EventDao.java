@@ -35,4 +35,7 @@ public interface EventDao {
     //LiveData<List<Event>> getAllEvents();
     @Query("SELECT * FROM event_table ORDER BY priority ASC")
     LiveData<List<Event>> getAllEvents();
+
+    @Query("SELECT * FROM event_table WHERE venue LIKE :search_venue ORDER BY priority ASC")
+    LiveData<List<Event>> getVenueEvents(String search_venue);
 }
