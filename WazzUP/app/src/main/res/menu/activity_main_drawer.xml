@@ -13,24 +13,20 @@
             android:icon="@drawable/ic_map_black"
             android:title="View Map" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_calendar"
+            android:title="View Calendar" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="More Info">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_people_outline"
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_contact"
                 android:title="Send" />
         </menu>
     </item>

@@ -199,17 +199,17 @@ public class AnnouncementPage extends AppCompatActivity{
 
     // Parses what happens on the Options selected
     // One option deletes all Events
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete_all_events:
-                eventViewModel.deleteAllEvents();
-                Toast.makeText(this, "All events deleted.", Toast.LENGTH_SHORT).show();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.delete_all_events:
+//                eventViewModel.deleteAllEvents();
+//                Toast.makeText(this, "All events deleted.", Toast.LENGTH_SHORT).show();
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//
+//    }
 
     // This is for saving the note
 //    @Override
