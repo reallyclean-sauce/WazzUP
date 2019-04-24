@@ -12,6 +12,7 @@ public class EventRepository {
     // private LiveData<List<Event>> allEvents;
     private LiveData<List<Event>> allEvents;
     private LiveData<List<Event>> venueEvents;
+    private LiveData<List<Event>> dateEvents;
 
 
     public EventRepository(Application application) {
@@ -43,6 +44,11 @@ public class EventRepository {
     public LiveData<List<Event>> getVenueEvents(String search_venue) {
         venueEvents = eventDao.getVenueEvents(search_venue);
         return venueEvents;
+    }
+
+    public LiveData<List<Event>> getDateEvents(String search_date) {
+        dateEvents = eventDao.getDateEvents(search_date);
+        return dateEvents;
     }
 
     private static class InsertEventAsyncTask extends AsyncTask<Event, Void, Void> {

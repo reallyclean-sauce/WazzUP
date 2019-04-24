@@ -4,12 +4,10 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Toast;
 
 import com.eeepips.wazzup.AnnouncementPage;
@@ -18,14 +16,11 @@ import com.eeepips.wazzup.Database.EventAdapter;
 import com.eeepips.wazzup.Database.EventViewModel;
 import com.eeepips.wazzup.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.eeepips.wazzup.AnnouncementPage.eventViewModel;
-
-public class VenueEventsActivity extends AppCompatActivity {
+public class DateEventsActivity extends AppCompatActivity {
     public static final int VIEW_EVENT_REQUEST = 2;
-    public static String search_venue;
+    public static String search_date;
 
 
     @Override
@@ -34,7 +29,7 @@ public class VenueEventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_venue_events);
 
         Bundle bundle = getIntent().getExtras();
-        search_venue = bundle.getString("Venue");
+        String message = bundle.getString("Venue");
 
         // For Refreshing all the events
         // And getting the new events
@@ -56,7 +51,7 @@ public class VenueEventsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         AnnouncementPage.eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-        AnnouncementPage.eventViewModel.getVenueEvents(search_venue).observe(this, new Observer<List<Event>>() {
+        AnnouncementPage.eventViewModel.getDateEvents(search_date).observe(this, new Observer<List<Event>>() {
             @Override
             public void onChanged(@Nullable List<Event> events) {
                 // Update Recycle Viewer
@@ -85,7 +80,7 @@ public class VenueEventsActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Event event) {
-                Intent intent = new Intent(VenueEventsActivity.this, ViewEventActivity.class);
+                Intent intent = new Intent(DateEventsActivity.this, ViewEventActivity.class);
                 intent.putExtra(ViewEventActivity.EXTRA_ID, event.getId());
                 intent.putExtra(ViewEventActivity.EXTRA_TITLE, event.getTitle());
                 intent.putExtra(ViewEventActivity.EXTRA_DESCRIPTION, event.getDescription());
@@ -100,7 +95,7 @@ public class VenueEventsActivity extends AppCompatActivity {
 
     }
 
-   // This is done by after any activity is finished (finish();)
+    // This is done by after any activity is finished (finish();)
     // Processes: if adding event
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

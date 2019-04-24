@@ -3,9 +3,11 @@ package com.eeepips.wazzup;
 //public class MapView {
 //}
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.eeepips.wazzup.AnnouncementActivities.VenueEventsActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +40,7 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
     private GoogleMap mMap;
     public UiSettings mapSettings;
     static final LatLng EEE_Marker = new LatLng(14.6495422, 121.0683548);
+    private Marker EEE;
 
     protected void requestPermission(String permissionType,
                                      int requestCode) {
@@ -101,8 +104,8 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
         mMap.setOnInfoWindowClickListener(this);
 
 //        Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         if (mMap != null) {
@@ -118,10 +121,11 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
             }
         }
 
-        Marker EEE = mMap.addMarker(new MarkerOptions()
+        EEE = mMap.addMarker(new MarkerOptions()
                 .position(EEE_Marker)
                 .title("EEE")
                 .snippet("Why you still here"));
+        EEE.setTag(0);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EEE_Marker, 14));
 
         mapSettings = mMap.getUiSettings();
@@ -129,8 +133,17 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
     }
 
     public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(this, "Info Window Tapped",
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Info Window Tapped",
+//                Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MapView.this, VenueEventsActivity.class);
+        String temp = marker.getTitle();
+        if (temp.equals("EEE")){
+            intent.putExtra("Venue", "UP EEEI");
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "No Events Exist",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
