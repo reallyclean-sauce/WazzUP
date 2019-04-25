@@ -40,7 +40,11 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
     private GoogleMap mMap;
     public UiSettings mapSettings;
     static final LatLng EEE_Marker = new LatLng(14.6495422, 121.0683548);
-    private Marker EEE;
+    static final LatLng Vinzons_Marker = new LatLng(14.654091, 121.0714082);
+    static final LatLng Romulo_Marker = new LatLng(14.6571125, 121.0707785);
+    private Marker UP_EEEI;
+    private Marker Vinzons_Hall;
+    private Marker Romulo_Hall;
 
     protected void requestPermission(String permissionType,
                                      int requestCode) {
@@ -121,12 +125,25 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
             }
         }
 
-        EEE = mMap.addMarker(new MarkerOptions()
+        UP_EEEI = mMap.addMarker(new MarkerOptions()
                 .position(EEE_Marker)
-                .title("EEE")
-                .snippet("Why you still here"));
-        EEE.setTag(0);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EEE_Marker, 14));
+                .title("UP EEEI")
+                .snippet("Tap to view events"));
+        UP_EEEI.setTag(0);
+
+        Romulo_Hall = mMap.addMarker(new MarkerOptions()
+                .position(Romulo_Marker)
+                .title("Romulo Hall")
+                .snippet("Tap to view events"));
+        Romulo_Hall.setTag(0);
+
+        Vinzons_Hall = mMap.addMarker(new MarkerOptions()
+                .position(Vinzons_Marker)
+                .title("Vinzons Hall")
+                .snippet("Tap to view events"));
+        Vinzons_Hall.setTag(0);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(EEE_Marker, 15));
 
         mapSettings = mMap.getUiSettings();
         mapSettings.setZoomControlsEnabled(true);
@@ -137,10 +154,17 @@ public class MapView extends FragmentActivity implements OnInfoWindowClickListen
 //                Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MapView.this, VenueEventsActivity.class);
         String temp = marker.getTitle();
-        if (temp.equals("EEE")){
-            intent.putExtra("Venue", "UP EEEI");
+        if (temp.equals("UP EEEI")) {
+            intent.putExtra("Venue", marker.getTitle());
             startActivity(intent);
-        } else {
+        } else if (temp.equals("Vinzons Hall")) {
+            intent.putExtra("Venue", marker.getTitle());
+            startActivity(intent);
+        } else if (temp.equals("Romulo Hall")) {
+            intent.putExtra("Venue", marker.getTitle());
+            startActivity(intent);
+        }
+        else {
             Toast.makeText(this, "No Events Exist",
                     Toast.LENGTH_SHORT).show();
         }
