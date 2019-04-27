@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnnouncementActivities.DateEventsActivity"></activity>
+        <activity android:name=".AnnouncementActivities.AddEventActivity"></activity>
+        <activity android:name=".AnnouncementActivities.DateEventsActivity" />
         <activity
             android:name=".AnnouncementActivities.VenueEventsActivity"
             android:label="@string/title_activity_venue_events"
@@ -30,6 +31,8 @@
         <activity
             android:name=".AnnouncementActivities.ExcelUpdate"
             android:parentActivityName=".AnnouncementPage" />
+        <activity
+            android:name=".AnnouncementActivities.ExcelUpload" />
         <activity
             android:name=".AnnouncementActivities.ViewEventActivity"
             android:parentActivityName=".AnnouncementPage" />
