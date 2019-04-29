@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity
             ArrayList<String> resource = data.getStringArrayListExtra("output");
             String event_string;
             String[] tokens;
-            String delims = "[,]+";
+            String delims = "[|]+";
 
 
             String title;

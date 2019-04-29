@@ -30,7 +30,7 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".AnnouncementActivities.ExcelUpdate"
-            android:parentActivityName=".AnnouncementPage" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AnnouncementActivities.ExcelUpload" />
         <activity
