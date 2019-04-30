@@ -1,8 +1,5 @@
 package com.eeepips.wazzup;
 
-//public class MapView {
-//}
-
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -15,11 +12,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 
 
 import android.support.v4.content.ContextCompat;
@@ -34,17 +28,59 @@ import java.util.List;
 import android.location.Address;
 import android.location.Geocoder;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.net.Uri;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import java.util.List;
+
 public class MapView extends FragmentActivity implements OnInfoWindowClickListener, OnMapReadyCallback {
 
     private static final int LOCATION_REQUEST_CODE = 101;
     private GoogleMap mMap;
     public UiSettings mapSettings;
     static final LatLng EEE_Marker = new LatLng(14.6495422, 121.0683548);
-    static final LatLng Vinzons_Marker = new LatLng(14.654091, 121.0714082);
-    static final LatLng Romulo_Marker = new LatLng(14.6571125, 121.0707785);
+    static final LatLng Vinzons_Marker = new LatLng(14.654091, 121.073603);
+    static final LatLng Romulo_Marker = new LatLng(14.6571125, 121.072966);
     private Marker UP_EEEI;
     private Marker Vinzons_Hall;
     private Marker Romulo_Hall;
+    Button getDirection;
+    private Polyline currentPolyline;
+    private MapFragment mapFragment;
+    private boolean isFirstTime = true;
 
     protected void requestPermission(String permissionType,
                                      int requestCode) {

@@ -63,4 +63,6 @@ dependencies {
 
     //Map Needs
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.karumi:dexter:5.0.0'
 }
