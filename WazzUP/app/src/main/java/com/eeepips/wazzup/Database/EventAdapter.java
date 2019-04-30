@@ -29,7 +29,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
     public void onBindViewHolder(@NonNull EventHolder eventHolder, int position) {
         Event currentEvent = events.get(position);
         eventHolder.eventViewTitle.setText(currentEvent.getTitle());
-        eventHolder.eventViewDescription.setText(currentEvent.getDescription());
+//        eventHolder.eventViewDescription.setText(currentEvent.getDescription());
+        eventHolder.eventViewVenue.setText(currentEvent.getVenue());
 //        eventHolder.eventViewPriority.setText(String.valueOf(currentEvent.getPriority()));
     }
 
@@ -51,14 +52,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
     class EventHolder extends RecyclerView.ViewHolder {
         private TextView eventViewTitle;
-        private TextView eventViewDescription;
+//        private TextView eventViewDescription;
+        private TextView eventViewVenue;
 //        private TextView eventViewPriority;
 
 
         public EventHolder(View itemView) {
             super(itemView);
             eventViewTitle = itemView.findViewById(R.id.event_view_title);
-            eventViewDescription = itemView.findViewById(R.id.event_view_description);
+//            eventViewDescription = itemView.findViewById(R.id.event_view_description);
+            eventViewVenue = itemView.findViewById(R.id.event_view_venue);
 //            eventViewPriority = itemView.findViewById(R.id.event_view_priority);
 
             // To be able to listen to every item in the list

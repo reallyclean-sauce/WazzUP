@@ -385,8 +385,8 @@ public class ExcelUpdate extends Activity
             if (values != null) {
 //                results.add("Name, Gender, Class Level");
                 for (List row : values) {
-                    results.add(row.get(1) + "," + row.get(2) + "," + row.get(3) + "," +
-                            row.get(4) + "," + row.get(5) + "," + row.get(6));
+                    results.add(row.get(1) + "|" + row.get(2) + "|" + row.get(3) + "|" +
+                            row.get(4) + "|" + row.get(5) + "|" + row.get(6));
                 }
             }
             return results;

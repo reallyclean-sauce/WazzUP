@@ -30,11 +30,11 @@
             android:ellipsize="end"/>
 
         <TextView
-            android:id="@+id/event_view_description"
+            android:id="@+id/event_view_venue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/event_view_title"
-            android:text="Description"
+            android:text="Venue"
             android:ellipsize="end"/>
 
     </RelativeLayout>
