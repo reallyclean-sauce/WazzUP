@@ -104,25 +104,25 @@ public class ViewEventActivity extends AppCompatActivity {
         finish();
     }
 
-    //    Wait for Google Maps API
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.view_venue_menu, menu);
-        return true;
-    }
+    //    Wait forerride
+    ////    public boolean onOptionsItemSelected(MenuItem item) {
+    ////        switch (item.getItemId()) {
+    ////            case R.id.view_venue:
+    ////                viewVenue();
+    ////                return true;
+    ////            default:
+    ////                return super.onOptionsItemSelected(item);
+    ////        }
+    ////
+    ////    } Google Maps API
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.view_venue_menu, menu);
+//        return true;
+//    }
 
 
     //    Wait for Google Maps API
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.view_venue:
-                viewVenue();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
+//    @Ov
 }
